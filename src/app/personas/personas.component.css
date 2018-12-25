@@ -1,0 +1,10 @@
+table {
+  width: 25%;
+}
+.example-button-row button,
+.example-button-row a {
+  margin-right: 18px;
+}
+mat-grid-tile {
+  background: lightblue;
+}

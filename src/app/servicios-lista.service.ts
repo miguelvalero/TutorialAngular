@@ -19,8 +19,9 @@ export class ServiciosListaService {
   DameLista (): Persona[] {
     return  this.lista;
   }
-  Incrementar (nombre: string) {
+  Incrementar (nombre: string): Persona [] {
     this.lista.filter(persona => persona.nombre === nombre)[0].puntos ++;
+    return this.lista;
   }
 
   Eliminar (nombre: string): Persona [] {
@@ -29,13 +30,15 @@ export class ServiciosListaService {
   }
 
   OrdenarPuntos (): Persona [] {
-    return this.lista.sort(function(obj1, obj2) {
+    this.lista = this.lista.sort(function(obj1, obj2) {
       return obj1.puntos - obj2.puntos;
     });
+    return this.lista;
   }
 
-  PonPersona(persona: Persona): void {
+  PonPersona(persona: Persona): Persona [] {
     this.lista.push(persona);
+    return this.lista;
   }
 
 }

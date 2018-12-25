@@ -8,6 +8,7 @@ import { ServiciosListaService } from '../servicios-lista.service';
   styleUrls: ['./personas.component.css']
 })
 export class PersonasComponent implements OnInit {
+  displayedColumns: string[] = ['nombre', 'puntos', 'incrementar', 'eliminar'];
 
   lista: Persona[] = [];
 
@@ -25,7 +26,7 @@ export class PersonasComponent implements OnInit {
   }
 
   Incrementar (nombre: string): void {
-    this.servicios.Incrementar (nombre);
+    this.lista = this.servicios.Incrementar (nombre);
   }
 
   Eliminar (nombre: string): void {
@@ -33,10 +34,17 @@ export class PersonasComponent implements OnInit {
   }
 
   OrdenarPuntos (): void {
+    console.log ('Entro a ordenar');
+    console.log (this.lista);
+
     this.lista = this.servicios.OrdenarPuntos ();
+    console.log ('Lista ordenada');
+    console.log (this.lista);
+    this.lista = this.servicios.Eliminar ('JJJJ');
   }
 
   Pon (): void {
-    this.servicios.PonPersona(new Persona (this.nombre, this.pass, this.rol, this.puntos));
+    this.lista = this.servicios.PonPersona(new Persona (this.nombre, this.pass, this.rol, this.puntos));
+    this.lista = this.servicios.Eliminar ('JJJJ');
   }
 }
