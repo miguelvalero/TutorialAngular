@@ -1,5 +1,1 @@
-h1 {
-  color: rgb(153, 51, 51);
-  font-family: Arial;
-  font-size: 250%;
-}
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
