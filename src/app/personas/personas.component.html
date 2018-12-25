@@ -1,5 +1,5 @@
 
-<button (click)="Mostrar()">Mostrar lista de personas </button>
+<button mat-raised-button color="primary" (click)="Mostrar()">Mostrar lista de personas </button>
 
 <div>
   <h2>PERSONAS DE LA LISTA</h2>
@@ -7,7 +7,7 @@
     <li *ngIf="persona.rol === 'Alumno'; else esProfe">
       Nombre: {{persona.nombre}} - Puntos: {{persona.puntos}}
       <button (click)="Incrementar(persona.nombre)">Añadir punto</button>
-      <button (click)="Eliminar(persona.nombre)">Borrar alumno</button>
+      <button class="mdc-icon-button material-icons" style="color:red" (click)="Eliminar(persona.nombre)">delete</button>
     </li>
     <ng-template #esProfe>
         Nombre: {{persona.nombre}}
