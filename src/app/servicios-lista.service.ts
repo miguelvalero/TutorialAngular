@@ -19,6 +19,11 @@ export class ServiciosListaService {
   DameLista (): Persona[] {
     return  this.lista;
   }
+
+  damePersona(nombre: string): Persona {
+    return this.lista.filter(persona => persona.nombre === nombre)[0];
+  }
+
   Incrementar (nombre: string) {
     this.lista.filter(persona => persona.nombre === nombre)[0].puntos ++;
   }
@@ -36,6 +41,17 @@ export class ServiciosListaService {
 
   PonPersona(persona: Persona): void {
     this.lista.push(persona);
+  }
+
+  Autentificar(nombre: string, pass: string): Persona {
+    let user: Persona[] = [];
+    user = this.lista.filter(persona => persona.nombre === nombre && persona.pass === pass );
+
+    if (user.length === 0) {
+      return null;
+    } else {
+      return user[0];
+    }
   }
 
 }

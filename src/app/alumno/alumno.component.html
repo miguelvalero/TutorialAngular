@@ -1,0 +1,32 @@
+<h1>
+  Bienvenido:  {{alumno.nombre}}
+</h1>
+<table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Pass</th>
+        <th scope="col">Puntos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"> {{alumno.nombre}} </th>
+        <td> {{alumno.pass}}</td>
+        <td> {{alumno.puntos}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<form  (ngSubmit)="Cambia();">
+
+    <div>
+      <label>Nuevo Password: </label>
+      <input type="text" name="pass" placeholder="escribe nuevo pass" required [(ngModel)]="nuevoPass">
+    </div>
+    <button> Cambiar</button>
+  </form>
+
+
+  <button (click)="goBack()">Cerrar sesión</button>
