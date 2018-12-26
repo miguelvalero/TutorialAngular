@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Persona } from '../Persona';
 import { ServiciosListaService } from '../servicios-lista.service';
 import { Location } from '@angular/common';
+import { ServiciosAPIService } from '../servicios-api.service';
 
 @Component({
   selector: 'app-personas',
@@ -17,29 +18,36 @@ export class PersonasComponent implements OnInit {
   rol: string;
   puntos: number;
   constructor(  private servicios: ServiciosListaService,
+                private servicioAPI: ServiciosAPIService,
                 private location: Location) { }
 
   ngOnInit() {
   }
 
   Mostrar (): void {
-    this.lista = this.servicios.DameLista();
+    this.servicioAPI.getTodos ()
+    .subscribe(lista =>  this.lista = lista);
   }
 
-  Incrementar (nombre: string): void {
-    this.servicios.Incrementar (nombre);
+  Incrementar (alumno: Persona): void {
+    this.servicioAPI.IncrementarPuntos (alumno).subscribe( () => this.Mostrar());
   }
 
   Eliminar (nombre: string): void {
-    this.lista = this.servicios.Eliminar (nombre);
+    this.servicioAPI.BorrarPersona (nombre).subscribe( () => this.Mostrar());
   }
 
   OrdenarPuntos (): void {
-    this.lista = this.servicios.OrdenarPuntos ();
+    this.servicioAPI.getTodos ()
+    .subscribe(lista =>  this.lista = lista
+      .sort(function(obj1, obj2) {
+              return obj1.puntos - obj2.puntos;
+      }));
   }
 
   Pon (): void {
-    this.servicios.PonPersona(new Persona (this.nombre, this.pass, this.rol, this.puntos));
+    this.servicioAPI.AñadePersona(new Persona (this.nombre, this.pass, this.rol, this.puntos))
+    .subscribe(() => this.Mostrar());
   }
 
   goBack(): void {

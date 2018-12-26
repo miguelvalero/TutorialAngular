@@ -44,9 +44,10 @@ export class ServiciosListaService {
   }
 
   Autentificar(nombre: string, pass: string): Persona {
+    console.log ('autenticar');
     let user: Persona[] = [];
     user = this.lista.filter(persona => persona.nombre === nombre && persona.pass === pass );
-
+    console.log (user);
     if (user.length === 0) {
       return null;
     } else {

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ServiciosListaService } from '../servicios-lista.service';
 import {Persona} from '../Persona';
 import { Location } from '@angular/common';
+import { ServiciosAPIService } from '../servicios-api.service';
 
 @Component({
   selector: 'app-alumno',
@@ -11,9 +12,10 @@ import { Location } from '@angular/common';
 })
 export class AlumnoComponent implements OnInit {
 
-  alumno: Persona;
+  alumno = new Persona ('A', 'A', 'alumno', 7);
   nuevoPass: string;
   constructor( private servicios: ServiciosListaService,
+               private servicioAPI: ServiciosAPIService,
                private route: ActivatedRoute,
                private location: Location) { }
 
@@ -23,13 +25,15 @@ export class AlumnoComponent implements OnInit {
 
   DameAlumno(): void {
     const nombre = this.route.snapshot.paramMap.get('nombre');
-    this.alumno = this.servicios.damePersona(nombre);
+    this.servicioAPI.getPersona(nombre)
+    .subscribe(persona =>  this.alumno = persona);
   }
 
   Cambia(): void {
    // this.servidorPersonas.ponPass(this.alumno);
     this.alumno.pass = this.nuevoPass;
-    console.log (this.servicios.DameLista());
+    this.servicioAPI.putPersona(this.alumno)
+    .subscribe();
   }
 
   goBack(): void {

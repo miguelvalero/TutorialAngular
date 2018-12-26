@@ -10,6 +10,8 @@ import { PersonaComponent } from './persona/persona.component';
 import { PersonasComponent } from './personas/personas.component';
 import { LoginComponent } from './login/login.component';
 import { AlumnoComponent } from './alumno/alumno.component';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AlumnoComponent } from './alumno/alumno.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
